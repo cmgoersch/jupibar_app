@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jupi App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JupiBar — Demo</title>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="description" content="JupiBar Logo mit An/Aus-Schalter">
 </head>
 <body>
-    
+    <main class="page-center">
+        <div class="panel">
+            <div id="logo-toggle" class="logo-wrapper" role="button" tabindex="0" aria-pressed="false" aria-label="JupiBar An-Aus">
+                <img id="jupi-logo" src="icons/Jupibar_Logo.svg" alt="JupiBar Logo">
+            </div>
+
+            <div class="controls">
+                <button id="toggle-btn" class="toggle-button">An / Aus</button>
+                <div class="state">Status: <span id="state-label">—</span></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

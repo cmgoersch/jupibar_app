@@ -1,0 +1,53 @@
+/* Basic page centering */
+:root{
+	--logo-size: 220px;
+}
+html,body{
+	height:100%;
+	margin:0;
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: #fafafa;
+	color: #111;
+}
+.page-center{
+	min-height:100vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.panel{ text-align:center; }
+
+.logo-wrapper{
+	display:inline-block;
+	cursor:pointer;
+	outline:none;
+	border-radius:12px;
+	padding:12px;
+}
+.logo-wrapper:focus{ box-shadow:0 0 0 4px rgba(21,156,228,0.15); }
+
+#jupi-logo{
+	width:var(--logo-size);
+	height:auto;
+	display:block;
+	margin:0 auto;
+	transition: filter 220ms ease, opacity 220ms ease;
+}
+
+/* 'off' = ausgegraut */
+#jupi-logo.off{
+	filter: grayscale(100%) brightness(0.75);
+	opacity:0.55;
+}
+
+/* 'on' = normale (rote) Farbe */
+#jupi-logo.on{
+	filter: none;
+	opacity:1;
+}
+
+.controls{ margin-top:14px; display:flex; gap:12px; align-items:center; justify-content:center; }
+.toggle-button{ padding:8px 14px; border-radius:8px; border:1px solid #ddd; background:white; cursor:pointer; }
+.state{ font-size:0.95rem; color:#333; }
+
+@media (max-width:420px){ :root{ --logo-size:160px } }
