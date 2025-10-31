@@ -13,21 +13,30 @@
 <body>
     <main class="page-center">
         <div class="panel">
-            <!-- Gestapeltes Logo-Element (drag & drop) -->
-            <div id="stacked-logos" class="logo-wrapper" role="application" tabindex="0" aria-label="Gestapeltes Logo - verschiebbar">
-                <!-- GV Logo oben (kleiner) -->
-                <img id="gv-logo" class="gv" src="icons/GV_Logo_R.svg" alt="GV Logo">
-                <!-- Jupi Logo darunter (groß) -->
-                <img id="jupi-logo" class="jupi" src="icons/Jupibar_Logo_R.svg" alt="JupiBar Logo">
-            </div>
+                        <div id="stacked-logos" class="logo-wrapper" role="application" tabindex="0" aria-label="Gestapeltes Logo - verschiebbar">
+                                <!-- GV Logo oben (kleiner) als Link -->
+                                <a id="gv-link" href="https://das-gaengeviertel.info/" target="_blank" rel="noopener noreferrer" aria-label="Das Gängeviertel öffnen">
+                                    <img id="gv-logo" class="gv" src="icons/GV_Logo_R.svg" alt="GV Logo">
+                                </a>
+                                <!-- Jupi Logo darunter (groß) -->
+                                <img id="jupi-logo" class="jupi" src="icons/Jupibar_Logo_R.svg" alt="JupiBar Logo">
+                        </div>
 
             <div class="controls">
-                
                 <div class="state"> <span id="state-label">—</span></div>
             </div>
-            <button id="toggle-btn" class="toggle-button">An / Aus</button>
         </div>
     </main>
+
+    <!-- Bottom fixed control: AN / AUS -->
+    <div id="bottom-controls" aria-hidden="false">
+        <button id="toggle-btn" class="toggle-button">An / Aus</button>
+    </div>
+
+    <!-- Telegram contact under the counter -->
+    <div id="telegram-container" aria-hidden="false">
+        <div id="telegram-text">Folge uns auf Telegram: <a id="telegram-link" href="https://t.me/JupiBAR" target="_blank" rel="noopener noreferrer">@JupiBAR</a></div>
+    </div>
 
     <script src="script.js" defer></script>
 </body>

@@ -1,7 +1,4 @@
-/*
-	Toggle state and drag for stacked logos.
-	Set initial state here: 'yes' or 'no'.
-*/
+
 let its_on = 'no';
 
 let img, toggleBtn, wrapper, stateLabel;
@@ -13,14 +10,14 @@ function updateUI(){
 	if(its_on === 'yes'){
 		img.classList.remove('off');
 		img.classList.add('on');
-		if(toggleBtn) toggleBtn.textContent = 'AUS';
+		if(toggleBtn) toggleBtn.textContent = 'STOP';
 		if(wrapper) wrapper.setAttribute('aria-pressed','true');
 		startCounter();
 		updateFavicon();
 	} else {
 		img.classList.remove('on');
 		img.classList.add('off');
-		if(toggleBtn) toggleBtn.textContent = 'AN';
+		if(toggleBtn) toggleBtn.textContent = 'START';
 		if(wrapper) wrapper.setAttribute('aria-pressed','false');
 		stopCounter();
 		updateFavicon();
@@ -78,7 +75,9 @@ function setupDrag(el){
 	let origLeft = 0, origTop = 0;
 
 	el.addEventListener('pointerdown', (e) => {
-		if(e.button && e.button !== 0) return; // only left button
+	// if pointerdown started on a link inside the stack, don't start drag here
+	if(e.target && e.target.closest && e.target.closest('a')) return;
+	if(e.button && e.button !== 0) return; // only left button
 		el.setPointerCapture(e.pointerId);
 		isDown = true;
 		isDragging = false;
@@ -171,14 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	// attach toggle handlers
 	if(toggleBtn) toggleBtn.addEventListener('click', toggle);
 	if(wrapper){
-		wrapper.addEventListener('click', (e) => {
-			// prevent click toggle immediately after a drag
-			if(typeof wrapper._wasDragging === 'function' && wrapper._wasDragging()){
-				return;
-			}
-			/* click toggles on short click */ toggle();
-		});
-		wrapper.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+		// We keep the wrapper focusable for drag, but do NOT toggle on wrapper clicks or keys.
+		// Clicking the GV link (inside the wrapper) still works because it's a normal anchor.
+		// The Jupi state should only be changed via the bottom toggle button.
+		// Therefore we intentionally do NOT attach a click or keydown handler that toggles here.
 	}
 
 	// enable drag on stacked element
