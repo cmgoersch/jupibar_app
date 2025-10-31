@@ -1,1 +1,3 @@
-Backend for the Jupi app
+start mit 
+
+nodemon server.js # leuchten-status-server

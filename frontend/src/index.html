@@ -3,21 +3,29 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JupiBar — Demo</title>
+        <title>jupi</title>
         <link rel="stylesheet" href="styles.css">
-        <meta name="description" content="JupiBar Logo mit An/Aus-Schalter">
+    <link id="favicon" rel="icon" href="icons/Jupibar_Logo_G.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="icons/Jupibar_Logo_G.svg">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="description" content="">
 </head>
 <body>
     <main class="page-center">
         <div class="panel">
-            <div id="logo-toggle" class="logo-wrapper" role="button" tabindex="0" aria-pressed="false" aria-label="JupiBar An-Aus">
-                <img id="jupi-logo" src="icons/Jupibar_Logo.svg" alt="JupiBar Logo">
+            <!-- Gestapeltes Logo-Element (drag & drop) -->
+            <div id="stacked-logos" class="logo-wrapper" role="application" tabindex="0" aria-label="Gestapeltes Logo - verschiebbar">
+                <!-- GV Logo oben (kleiner) -->
+                <img id="gv-logo" class="gv" src="icons/GV_Logo_R.svg" alt="GV Logo">
+                <!-- Jupi Logo darunter (groß) -->
+                <img id="jupi-logo" class="jupi" src="icons/Jupibar_Logo_R.svg" alt="JupiBar Logo">
             </div>
 
             <div class="controls">
-                <button id="toggle-btn" class="toggle-button">An / Aus</button>
-                <div class="state">Status: <span id="state-label">—</span></div>
+                
+                <div class="state"> <span id="state-label">—</span></div>
             </div>
+            <button id="toggle-btn" class="toggle-button">An / Aus</button>
         </div>
     </main>
 

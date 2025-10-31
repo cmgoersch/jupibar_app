@@ -1,51 +1,64 @@
 /* Basic page centering */
-:root{
-	--logo-size: 220px;
-}
-html,body{
-	height:100%;
-	margin:0;
-	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-	background: #fafafa;
-	color: #111;
-}
-.page-center{
-	min-height:100vh;
-	display:flex;
-	align-items:center;
-	justify-content:center;
-}
-.panel{ text-align:center; }
+:root{ --logo-size:220px; }
 
-.logo-wrapper{
-	display:inline-block;
-	cursor:pointer;
-	outline:none;
-	border-radius:12px;
-	padding:12px;
-}
-.logo-wrapper:focus{ box-shadow:0 0 0 4px rgba(21,156,228,0.15); }
-
-#jupi-logo{
-	width:var(--logo-size);
-	height:auto;
-	display:block;
-	margin:0 auto;
-	transition: filter 220ms ease, opacity 220ms ease;
+/* Einfaches, klares Layout */
+html, body{
+  height:100%;
+  margin:0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:#fafafa;
+  color:#111;
 }
 
-/* 'off' = ausgegraut */
-#jupi-logo.off{
-	filter: grayscale(100%) brightness(0.75);
-	opacity:0.55;
+.page-center{ display:flex; align-items:flex-start; justify-content:center; min-height:100vh; }
+
+/* Reserve Platz unterhalb des fixierten Logos für die Controls */
+.panel{ text-align:center; padding-top:calc(var(--logo-size) + 20px); }
+
+/* fixiertes, oben zentriertes Logo-Stack */
+#stacked-logos{
+  position:fixed;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:var(--logo-size);
+  height:auto;
+  cursor:grab;
+  z-index:9999;
 }
 
-/* 'on' = normale (rote) Farbe */
+/* Bilder innerhalb des Stack */
+#stacked-logos img{ display:block; pointer-events:none; }
+
+/* Jupi (groß, zentriert) */
+#jupi-logo{ width:100%; display:block; }
+
+/* GV (kleiner) unten links relativ zur Jupi-Box */
+#gv-logo{
+  position: absolute;
+  width:25%;
+  left:0%;
+  bottom:6%;
+}
+
+/* einfacher On/Off-Effekt */
+#jupi-logo.off{ filter:grayscale(100%) brightness(0.8); opacity:0.6; }
+
+/* Neon-Glow + Puls nur, wenn `on` */
 #jupi-logo.on{
-	filter: none;
-	opacity:1;
+  /* layered glow using drop-shadow so it works with <img src="..."> */
+  filter: drop-shadow(0 0 6px rgba(255,50,50,0.9)) drop-shadow(0 0 14px rgba(255,90,90,0.6));
+  mix-blend-mode: screen;
+  animation: jupi-neon-pulse 2.4s ease-in-out infinite;
+  opacity:1;
 }
 
+@keyframes jupi-neon-pulse{
+  0%,100%{ filter: drop-shadow(0 0 5px rgba(255,50,50,0.8)) drop-shadow(0 0 10px rgba(255,90,90,0.45)); transform: none; opacity:1; }
+  50%{ filter: drop-shadow(0 0 14px rgba(255,110,110,1)) drop-shadow(0 0 26px rgba(255,140,140,0.9)); transform: translateY(-1px) scale(1.02); opacity:0.98; }
+}
+
+/* Controls unterhalb */
 .controls{ margin-top:14px; display:flex; gap:12px; align-items:center; justify-content:center; }
 .toggle-button{ padding:8px 14px; border-radius:8px; border:1px solid #ddd; background:white; cursor:pointer; }
 .state{ font-size:0.95rem; color:#333; }
